@@ -1,5 +1,4 @@
 import requests
-import folium
 import math
 
 #Hämtar magnetisk variation från NOAA
@@ -46,8 +45,8 @@ val_av = input("Har du en målkoordinat? (ja/nej) ")
 if val_av.lower() == "ja":
 
     try:
-        lat = float(input("Ange din latitud ").replace(",", "."))
-        lon = float(input("Ange din longitud ").replace(",", "."))
+        lat = float(input("Ange din nuvarande latitud ").replace(",", "."))
+        lon = float(input("Ange din nuvarande longitud ").replace(",", "."))
         target_lat = float(input("Ange mållatitud ").replace(",", "."))
         target_lon = float(input("Ange mållongitud ").replace(",", "."))
     except ValueError:
@@ -62,12 +61,7 @@ if val_av.lower() == "ja":
     print(f"Magnetisk variation: {variation:.2f}°")
     print(f"Styr kurs (kompass): {magnetisk_kurs:.2f}°")
 
-    # karta
-    k = folium.Map(location=[lat, lon], zoom_start=6)
-    folium.Marker([lat, lon], popup="Start").add_to(k)
-    folium.Marker([target_lat, target_lon], popup="Mål").add_to(k)
-    folium.PolyLine([[lat, lon], [target_lat, target_lon]]).add_to(k)
-    k.save("map.html")
+
 
 
 # =========================
@@ -76,8 +70,8 @@ if val_av.lower() == "ja":
 elif val_av.lower() == "nej":
 
     try:
-        lat = float(input("Ange din latitud ").replace(",", "."))
-        lon = float(input("Ange din longitud ").replace(",", "."))
+        lat = float(input("Ange din nuvarande latitud ").replace(",", "."))
+        lon = float(input("Ange din nuvarande longitud ").replace(",", "."))
     except ValueError:
         print("Felaktig inmatning.")
         exit()
